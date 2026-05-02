@@ -3,362 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المتجر | Store</title>
+<title>قائمة الأصناف | Menu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --coral: #FF6B6B;
-    --peach: #FF8E53;
-    --cream: #FFF8F0;
-    --dark: #1A0A00;
-    --warm-brown: #3D1C02;
-    --mint: #4ECDC4;
-    --gold: #FFD93D;
-    --card-bg: #FFFFFF;
-    --shadow: 0 8px 40px rgba(255,107,107,0.13);
-    --radius: 22px;
-    --section-bg: #FFF3E8;
-  }
+:root {
+  --c1: #FF4D4D;
+  --c2: #FF8C42;
+  --c3: #FFD166;
+  --dark: #0F0A00;
+  --dark2: #1C1100;
+  --card: #FFFFFF;
+  --bg: #FAF6F0;
+  --text-muted: #9A8F84;
+  --border: rgba(0,0,0,0.06);
+  --radius-lg: 24px;
+  --shadow-card: 0 2px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-hover: 0 20px 60px rgba(255,77,77,0.15), 0 4px 16px rgba(0,0,0,0.08);
+  --font: 'Tajawal', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); font-family: var(--font); color: var(--dark); min-height: 100vh; overflow-x: hidden; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 320px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  padding: 0 1.5rem 2.5rem;
+  overflow: hidden; text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, #1C0A00 0%, #3D1500 40%, #6B2500 100%);
+  z-index: 0;
+}
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(60px); z-index: 1; }
+.blob1 { width: 320px; height: 320px; background: var(--c1); top: -80px; right: -80px; opacity: 0.55; }
+.blob2 { width: 260px; height: 260px; background: var(--c2); bottom: -60px; left: -60px; opacity: 0.35; }
+.blob3 { width: 180px; height: 180px; background: var(--c3); top: 40px; left: 30%; opacity: 0.2; }
 
-  body {
-    background: var(--cream);
-    font-family: 'Tajawal', sans-serif;
-    color: var(--dark);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+.lang-btn {
+  position: absolute; top: 1.2rem; left: 1.2rem;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.9);
+  padding: 0.35rem 1rem; border-radius: 50px;
+  cursor: pointer; font-family: var(--font);
+  font-weight: 700; font-size: 0.82rem;
+  backdrop-filter: blur(12px); transition: all 0.3s; z-index: 10;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.22); }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%);
-    padding: 3rem 1.5rem 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.08);
-    top: -120px; left: -100px;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    bottom: -80px; right: -60px;
-  }
+.store-logo {
+  width: 110px; height: 110px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  position: relative; z-index: 5;
+  margin-bottom: 1.1rem; margin-top: 3.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.store-logo img { width: 100%; height: 100%; object-fit: cover; }
 
-  .lang-btn {
-    position: absolute;
-    top: 1.2rem;
-    left: 1.2rem;
-    background: rgba(255,255,255,0.25);
-    border: 2px solid rgba(255,255,255,0.6);
-    color: #fff;
-    padding: 0.4rem 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: 'Tajawal', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    backdrop-filter: blur(8px);
-    transition: all 0.3s;
-    z-index: 10;
-  }
-  .lang-btn:hover { background: rgba(255,255,255,0.4); }
+.hero-content { position: relative; z-index: 5; }
+.store-name {
+  font-size: clamp(1.9rem, 6vw, 3rem);
+  font-weight: 900; color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+  margin-bottom: 0.6rem; line-height: 1.1;
+}
+.store-tagline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(10px);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem; font-weight: 500;
+  padding: 0.4rem 1.1rem; border-radius: 50px;
+}
+.tdot { width: 5px; height: 5px; border-radius: 50%; background: var(--c3); display: inline-block; }
 
-  .store-logo {
-    width: 150px; height: 150px;
-    border-radius: 10%;
-    background: rgba(255,255,255,0.25);
-    margin: 0 auto 1rem;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-    border: 1px  rgba(255,255,255,0.5);
-    backdrop-filter: blur(10px);
-    position: relative; z-index: 1;
-    overflow: hidden;
-  }
-  .store-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  .store-name {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 900;
-    color: #fff;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.15);
-    position: relative; z-index: 1;
-    line-height: 1.1;
-  }
-  .store-tagline {
-    color: rgba(255,255,255,0.9);
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    position: relative; z-index: 1;
-  }
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--dark2);
+  display: flex; justify-content: center;
+}
+.stat-item {
+  flex: 1; max-width: 160px;
+  padding: 0.85rem 0.5rem; text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.06);
+}
+.stat-item:last-child { border-left: none; }
+.stat-num { font-size: 1.2rem; font-weight: 900; color: var(--c3); display: block; line-height: 1; }
+.stat-label { font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 2px; display: block; }
 
-  /* ── NAV TABS ── */
-  .nav-wrap {
-    background: #fff;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .nav-tabs {
-    display: flex;
-    overflow-x: auto;
-    gap: 0;
-    scrollbar-width: none;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .nav-tabs::-webkit-scrollbar { display: none; }
-  .nav-tab {
-    flex: 1;
-    min-width: 120px;
-    padding: 1rem 0.8rem;
-    text-align: center;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #999;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s;
-    white-space: nowrap;
-    background: none; border-top: none; border-left: none; border-right: none;
-  }
-  .nav-tab .tab-icon { font-size: 1.4rem; display: block; margin-bottom: 2px; }
-  .nav-tab.active {
-    color: var(--coral);
-    border-bottom-color: var(--coral);
-  }
-  .nav-tab:hover { color: var(--coral); }
+/* ── NAV ── */
+.nav-wrap {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+.nav-tabs { display: flex; overflow-x: auto; scrollbar-width: none; max-width: 860px; margin: 0 auto; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  flex: 1; min-width: 130px; padding: 0.9rem 1rem;
+  text-align: center; cursor: pointer;
+  font-weight: 700; font-size: 0.82rem; color: #bbb;
+  border: none; border-bottom: 2.5px solid transparent;
+  background: none; transition: all 0.25s; white-space: nowrap;
+  font-family: var(--font);
+}
+.nav-tab .tab-icon { font-size: 1.3rem; display: block; margin-bottom: 3px; transition: transform 0.25s; }
+.nav-tab.active { color: var(--c1); border-bottom-color: var(--c1); }
+.nav-tab.active .tab-icon { transform: scale(1.15); }
+.nav-tab:hover { color: var(--c1); }
 
-  /* ── SECTIONS ── */
-  .section { display: none; padding: 2rem 1rem 4rem; max-width: 1100px; margin: 0 auto; }
-  .section.active { display: block; }
+/* ── SECTIONS ── */
+.section { display: none; padding: 2.2rem 1rem 5rem; max-width: 1100px; margin: 0 auto; animation: sIn 0.35s ease both; }
+.section.active { display: block; }
+@keyframes sIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
-  .section-title {
-    text-align: center;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 900;
-    color: var(--warm-brown);
-    margin-bottom: 0.4rem;
-  }
-  .section-sub {
-    text-align: center;
-    color: #aaa;
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
+.section-header { text-align: center; margin-bottom: 2rem; }
+.section-eyebrow {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.3rem;
+}
+.section-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 900; color: var(--dark); }
+.section-divider { width: 36px; height: 3px; background: linear-gradient(90deg, var(--c1), var(--c2)); border-radius: 2px; margin: 0.7rem auto 0; }
 
-  /* ── GRID ── */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
+/* ── GRID ── */
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.4rem; }
 
-  /* ── CARD ── */
-  .card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: fadeUp 0.5s ease both;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 50px rgba(255,107,107,0.2);
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+/* ── CARD ── */
+.card {
+  background: var(--card); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card); overflow: hidden;
+  transition: transform 0.3s cubic-bezier(.23,1,.32,1), box-shadow 0.3s;
+  animation: cIn 0.5s ease both; border: 1px solid var(--border);
+}
+.card:hover { transform: translateY(-7px); box-shadow: var(--shadow-hover); }
+@keyframes cIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
-  /* ── IMAGE SLIDER ── */
-  .slider {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    background: #f5f0eb;
-  }
-  .slider-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.4s ease;
-  }
-  .slide {
-    min-width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 5rem;
-    background: linear-gradient(135deg, #ffe4d6, #ffd0c0);
-  }
-  .slide img { width: 100%; height: 100%; object-fit: cover; }
+/* ── SLIDER ── */
+.slider { position: relative; overflow: hidden; aspect-ratio: 4/3; background: #f0ebe4; }
+.slider-track { display: flex; height: 100%; transition: transform 0.42s cubic-bezier(.23,1,.32,1); }
+.slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; background: linear-gradient(135deg, #f5ede3, #ffe8d6); flex-shrink: 0; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+.slider::after { content:''; position:absolute; bottom:0; left:0; right:0; height:55px; background:linear-gradient(to top,rgba(0,0,0,0.18),transparent); pointer-events:none; z-index:3; }
 
-  .slider-btn {
-    position: absolute;
-    top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.85);
-    border: none; cursor: pointer;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    font-size: 1rem;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    transition: all 0.2s;
-    z-index: 5;
-    color: var(--coral);
-  }
-  .slider-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
-  .slider-btn.prev { left: 8px; }
-  .slider-btn.next { right: 8px; }
-  .slider-dots {
-    position: absolute; bottom: 8px; left: 0; right: 0;
-    display: flex; justify-content: center; gap: 5px;
-  }
-  .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.6);
-    cursor: pointer; transition: all 0.3s;
-  }
-  .dot.active { background: #fff; width: 18px; border-radius: 3px; }
+.slider-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.92); border: none; cursor: pointer;
+  width: 30px; height: 30px; border-radius: 50%; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.14); transition: all 0.2s;
+  z-index: 5; color: var(--c1); font-weight: 700;
+}
+.slider-btn:hover { background:#fff; transform:translateY(-50%) scale(1.1); }
+.slider-btn.prev { left: 10px; }
+.slider-btn.next { right: 10px; }
+.slider-dots { position:absolute; bottom:10px; left:0; right:0; display:flex; justify-content:center; gap:4px; z-index:5; }
+.dot { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.5); cursor:pointer; transition:all 0.3s; }
+.dot.active { background:#fff; width:16px; border-radius:3px; }
 
-  .badge {
-    position: absolute; top: 12px; right: 12px;
-    background: var(--coral);
-    color: #fff; font-size: 0.7rem; font-weight: 700;
-    padding: 3px 10px; border-radius: 50px;
-  }
+.badge { position:absolute; top:12px; right:12px; font-size:0.65rem; font-weight:800; padding:4px 10px; border-radius:50px; z-index:5; backdrop-filter:blur(4px); }
+.badge-hot { background:var(--c1); color:#fff; }
+.badge-new { background:var(--dark); color:var(--c3); }
+.badge-value { background:#17B26A; color:#fff; }
+.badge-veggie { background:#3BA55D; color:#fff; }
 
-  /* ── CARD BODY ── */
-  .card-body { padding: 1.1rem 1.2rem 1.4rem; }
-  .card-name {
-    font-size: 1.1rem; font-weight: 900;
-    color: var(--warm-brown); margin-bottom: 0.3rem;
-  }
-  .card-desc {
-    font-size: 0.83rem; color: #888;
-    line-height: 1.6; margin-bottom: 0.7rem;
-  }
+/* ── CARD BODY ── */
+.card-body { padding: 1.1rem 1.2rem 1.3rem; }
+.card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:0.5rem; margin-bottom:0.35rem; }
+.card-name { font-size:1.05rem; font-weight:900; color:var(--dark); line-height:1.3; }
+.price-tag {
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color:#fff; font-size:0.9rem; font-weight:900;
+  padding:4px 12px; border-radius:50px; white-space:nowrap;
+  flex-shrink:0; box-shadow:0 2px 8px rgba(255,77,77,0.3);
+}
+.card-desc { font-size:0.8rem; color:var(--text-muted); line-height:1.65; margin-bottom:0.85rem; }
+.card-divider { height:1px; background:var(--border); margin-bottom:0.85rem; }
 
-  /* ── FLAVORS ── */
-  .flavors-label {
-    font-size: 0.78rem; font-weight: 700; color: #bbb;
-    text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 0.4rem;
-  }
-  .flavors {
-    display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 0.9rem;
-  }
-  .flavor-chip {
-    background: #FFF3E8;
-    color: var(--coral);
-    border: 1.5px solid #FFD0B5;
-    border-radius: 50px;
-    padding: 3px 10px;
-    font-size: 0.78rem; font-weight: 700;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .flavor-chip:hover, .flavor-chip.selected {
-    background: var(--coral); color: #fff; border-color: var(--coral);
-  }
+.flavors-label { font-size:0.68rem; font-weight:700; color:#C8BFB5; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:0.5rem; }
+.flavors { display:flex; flex-wrap:wrap; gap:6px; }
+.flavor-chip {
+  background:#FFF5EE; color:#D4623A;
+  border:1.5px solid #FFD9C0; border-radius:50px;
+  padding:4px 11px; font-size:0.74rem; font-weight:700;
+  cursor:pointer; transition:all 0.18s; font-family:var(--font);
+}
+.flavor-chip:hover { background:#FFE8D6; border-color:#FFA87A; }
+.flavor-chip.selected { background:linear-gradient(135deg,var(--c1),var(--c2)); color:#fff; border-color:transparent; box-shadow:0 2px 8px rgba(255,77,77,0.25); }
 
-  /* ── PRICE ROW ── */
-  .price-row {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 0.5rem;
-  }
-  .price {
-    font-size: 1.3rem; font-weight: 900;
-    color: var(--coral);
-  }
-  .price span { font-size: 0.8rem; color: #ccc; font-weight: 400; }
+/* ── FOOTER ── */
+footer { background:var(--dark2); color:rgba(255,255,255,0.35); text-align:center; padding:2rem 1rem; font-size:0.8rem; }
+footer strong { color:var(--c3); }
+.footer-line { width:40px; height:2px; background:linear-gradient(90deg,var(--c1),var(--c2)); border-radius:2px; margin:.8rem auto 0; opacity:0.4; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--warm-brown);
-    color: rgba(255,255,255,0.7);
-    text-align: center;
-    padding: 1.5rem 1rem;
-    font-size: 0.85rem;
-  }
-  footer strong { color: #FFD93D; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 480px) {
-    .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .hero { padding: 2.5rem 1rem 3rem; }
-    .section { padding: 1.5rem 0.75rem 3rem; }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width:540px) {
+  .products-grid { grid-template-columns:1fr; }
+  .hero { min-height:280px; }
+  .store-logo { width:90px; height:90px; border-radius:22px; }
+  .stats-bar { display:none; }
+  .section { padding:1.5rem 0.8rem 4rem; }
+}
+@media (min-width:541px) and (max-width:800px) {
+  .products-grid { grid-template-columns:repeat(2,1fr); }
+}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
   <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
   <div class="store-logo"><img src="img/logo.png" alt="logo"></div>
-  <h1 class="store-name" data-ar= "قائمة الأصناف" data-en="Store Name">قائمة الأصناف</h1>
-  <p class="store-tagline" data-ar="أشهى النكهات • أحلى اللحظات" data-en="Best Flavors • Sweetest Moments">أشهى النكهات • أحلى اللحظات</p>
+  <div class="hero-content">
+    <h1 class="store-name" data-ar="قائمة الأصناف" data-en="Our Menu">قائمة الأصناف</h1>
+    <p class="store-tagline">
+      <span class="tdot"></span>
+      <span data-ar="أشهى النكهات • أحلى اللحظات" data-en="Best Flavors • Sweetest Moments">أشهى النكهات • أحلى اللحظات</span>
+      <span class="tdot"></span>
+    </p>
+  </div>
 </header>
 
-<!-- NAV TABS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">١٠+</span><span class="stat-label" data-ar="نكهة متاحة" data-en="Flavors">نكهة متاحة</span></div>
+  <div class="stat-item"><span class="stat-num">٣</span><span class="stat-label" data-ar="أقسام" data-en="Categories">أقسام</span></div>
+  <div class="stat-item"><span class="stat-num">١٠٠٪</span><span class="stat-label" data-ar="طازج يومياً" data-en="Fresh Daily">طازج يومياً</span></div>
+</div>
+
 <nav class="nav-wrap">
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showSection('scoop', this)">
+    <button class="nav-tab active" onclick="showSection('scoop',this)">
       <span class="tab-icon">🍨</span>
       <span data-ar="كرة آيس كريم" data-en="Scoop Ice Cream">كرة آيس كريم</span>
     </button>
-    <button class="nav-tab" onclick="showSection('machine', this)">
+    <button class="nav-tab" onclick="showSection('machine',this)">
       <span class="tab-icon">🍦</span>
       <span data-ar="آيس كريم ماكينة" data-en="Soft Serve">آيس كريم ماكينة</span>
     </button>
-    <button class="nav-tab" onclick="showSection('sandwiches', this)">
+    <button class="nav-tab" onclick="showSection('sandwiches',this)">
       <span class="tab-icon">🥪</span>
       <span data-ar="سندوتشات حارة" data-en="Hot Sandwiches">سندوتشات حارة</span>
     </button>
   </div>
 </nav>
 
-<!-- ══ SECTION 1: SCOOP ICE CREAM ══ -->
+<!-- ══ SCOOP ══ -->
 <section class="section active" id="scoop">
-  <h2 class="section-title" data-ar="🍨 كرة آيس كريم" data-en="🍨 Scoop Ice Cream">🍨 كرة آيس كريم</h2>
-  <p class="section-sub" data-ar="اختر نكهتك المفضلة" data-en="Choose your favorite flavor">اختر نكهتك المفضلة</p>
-
+  <div class="section-header">
+    <div class="section-eyebrow">SCOOP ICE CREAM</div>
+    <h2 class="section-title" data-ar="🍨 كرة آيس كريم" data-en="🍨 Scoop Ice Cream">🍨 كرة آيس كريم</h2>
+    <div class="section-divider"></div>
+  </div>
   <div class="products-grid">
 
-    <!-- Card: Single Scoop -->
-    <div class="card" style="animation-delay:0.05s">
+    <div class="card" style="animation-delay:.05s">
       <div class="slider" id="slider-s1">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-1.jpg" alt="logo"></div>
-          <div class="slide"><img src="img/ice-2.jpg" alt="logo"></div>
-          <div class="slide"><img src="img/ice-3.jpg" alt="logo"></div>
+          <div class="slide"><img src="img/ice-1.jpg" alt="كرة واحدة"></div>
+          <div class="slide"><img src="img/ice-2.jpg" alt="كرة واحدة"></div>
+          <div class="slide"><img src="img/ice-3.jpg" alt="كرة واحدة"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-s1',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-s1',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+        <span class="badge badge-hot" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="كرة واحدة" data-en="Single Scoop">كرة واحدة</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="كرة واحدة" data-en="Single Scoop">كرة واحدة</div>
+          <div class="price-tag">8د.ل</div>
+        </div>
         <div class="card-desc" data-ar="كرة آيس كريم طازجة بنكهتك المفضلة مع الكوب أو القاقاو" data-en="Fresh ice cream scoop in your favorite flavor, served in a cup or cone">كرة آيس كريم طازجة بنكهتك المفضلة مع الكوب أو القاقاو</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات المتاحة" data-en="Available Flavors">النكهات المتاحة</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="شوكولاتة" data-en="Chocolate">شوكولاتة</span>
@@ -367,28 +301,26 @@
           <span class="flavor-chip" data-ar="بستاشيو" data-en="Pistachio">بستاشيو</span>
           <span class="flavor-chip" data-ar="مانجو" data-en="Mango">مانجو</span>
         </div>
-        <div class="price-row">
-          <div class="price">8د.ل<span>/ كرة</span></div>
-        </div>
       </div>
     </div>
 
-    <!-- Card: Double Scoop -->
-    <div class="card" style="animation-delay:0.1s">
+    <div class="card" style="animation-delay:.1s">
       <div class="slider" id="slider-s2">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-4.jpg"></div>
-          <div class="slide"><img src="img/ice-1.jpg"></div>
+          <div class="slide"><img src="img/ice-4.jpg" alt="كرتين"></div>
+          <div class="slide"><img src="img/ice-1.jpg" alt="كرتين"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-s2',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-s2',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="كرتين" data-en="Double Scoop">كرتين</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="كرتين" data-en="Double Scoop">كرتين</div>
+          <div class="price-tag">12د.ل</div>
+        </div>
         <div class="card-desc" data-ar="نكهتان مميزتان في كوب واحد" data-en="Two delicious flavors in one cup">نكهتان مميزتان في كوب واحد</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات المتاحة" data-en="Available Flavors">النكهات المتاحة</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="شوكولاتة" data-en="Chocolate">شوكولاتة</span>
@@ -398,30 +330,28 @@
           <span class="flavor-chip" data-ar="توت" data-en="Blueberry">توت</span>
           <span class="flavor-chip" data-ar="كراميل" data-en="Caramel">كراميل</span>
         </div>
-        <div class="price-row">
-          <div class="price">12د.ل<span>/ طلب</span></div>
-        </div>
       </div>
     </div>
 
-    <!-- Card: Triple Scoop -->
-    <div class="card" style="animation-delay:0.15s">
+    <div class="card" style="animation-delay:.15s">
       <div class="slider" id="slider-s3">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-1.jpg"></div>
-          <div class="slide"><img src="img/ice-2.jpg"></div>
-          <div class="slide"><img src="img/ice-3.jpg"></div>
+          <div class="slide"><img src="img/ice-1.jpg" alt="ثلاث كرات"></div>
+          <div class="slide"><img src="img/ice-2.jpg" alt="ثلاث كرات"></div>
+          <div class="slide"><img src="img/ice-3.jpg" alt="ثلاث كرات"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-s3',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-s3',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="قيمة ممتازة" data-en="Best Value">قيمة ممتازة</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+        <span class="badge badge-value" data-ar="قيمة ممتازة" data-en="Best Value">قيمة ممتازة</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="ثلاث كرات" data-en="Triple Scoop">ثلاث كرات</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="ثلاث كرات" data-en="Triple Scoop">ثلاث كرات</div>
+          <div class="price-tag">16د.ل</div>
+        </div>
         <div class="card-desc" data-ar="ثلاث نكهات شهية في كوب كبير" data-en="Three amazing flavors in a large cup">ثلاث نكهات شهية في كوب كبير</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات المتاحة" data-en="Available Flavors">النكهات المتاحة</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="شوكولاتة" data-en="Chocolate">شوكولاتة</span>
@@ -431,66 +361,66 @@
           <span class="flavor-chip" data-ar="مانجو" data-en="Mango">مانجو</span>
           <span class="flavor-chip" data-ar="ليمون" data-en="Lemon">ليمون</span>
         </div>
-        <div class="price-row">
-          <div class="price">16د.ل<span>/ طلب</span></div>
-        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══ SECTION 2: MACHINE ICE CREAM ══ -->
+<!-- ══ MACHINE ══ -->
 <section class="section" id="machine">
-  <h2 class="section-title" data-ar="🍦 آيس كريم ماكينة" data-en="🍦 Soft Serve">🍦 آيس كريم ماكينة</h2>
-  <p class="section-sub" data-ar="ناعم وكريمي في كل لقمة" data-en="Smooth and creamy in every bite">ناعم وكريمي في كل لقمة</p>
-
+  <div class="section-header">
+    <div class="section-eyebrow">SOFT SERVE</div>
+    <h2 class="section-title" data-ar="🍦 آيس كريم ماكينة" data-en="🍦 Soft Serve">🍦 آيس كريم ماكينة</h2>
+    <div class="section-divider"></div>
+  </div>
   <div class="products-grid">
 
-    <div class="card" style="animation-delay:0.05s">
+    <div class="card" style="animation-delay:.05s">
       <div class="slider" id="slider-m1">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-4.jpg"></div>
-          <div class="slide"><img src="img/ice-2.jpg"></div>
+          <div class="slide"><img src="img/ice-4.jpg" alt="كوب صغير"></div>
+          <div class="slide"><img src="img/ice-2.jpg" alt="كوب صغير"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-m1',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-m1',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+        <span class="badge badge-hot" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="كوب صغير" data-en="Small Cup">كوب صغير</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="كوب صغير" data-en="Small Cup">كوب صغير</div>
+          <div class="price-tag">8د.ل</div>
+        </div>
         <div class="card-desc" data-ar="آيس كريم ماكينة ناعم في كوب مريح للمشي" data-en="Soft serve in a convenient cup, perfect to go">آيس كريم ماكينة ناعم في كوب مريح للمشي</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات" data-en="Flavors">النكهات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="فانيليا" data-en="Vanilla">فانيليا</span>
           <span class="flavor-chip" data-ar="شوكولاتة" data-en="Chocolate">شوكولاتة</span>
           <span class="flavor-chip" data-ar="مزيج" data-en="Swirl">مزيج</span>
         </div>
-        <div class="price-row">
-          <div class="price">8د.ل<span>/ طلب</span></div>
-        </div>
       </div>
     </div>
 
-    <div class="card" style="animation-delay:0.1s">
+    <div class="card" style="animation-delay:.1s">
       <div class="slider" id="slider-m2">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-4.jpg"></div>
-          <div class="slide"><img src="img/ice-3.jpg"></div>
-          <div class="slide"><img src="img/ice-2.jpg"></div>
+          <div class="slide"><img src="img/ice-4.jpg" alt="كوب كبير"></div>
+          <div class="slide"><img src="img/ice-3.jpg" alt="كوب كبير"></div>
+          <div class="slide"><img src="img/ice-2.jpg" alt="كوب كبير"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-m2',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-m2',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-        </div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="كوب كبير مع توبينج" data-en="Large Cup with Toppings">كوب كبير مع توبينج</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="كوب كبير مع توبينج" data-en="Large Cup with Toppings">كوب كبير مع توبينج</div>
+          <div class="price-tag">12د.ل</div>
+        </div>
         <div class="card-desc" data-ar="آيس كريم ماكينة كبير مع إضافات مميزة" data-en="Large soft serve with delicious toppings">آيس كريم ماكينة كبير مع إضافات مميزة</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات" data-en="Flavors">النكهات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="فانيليا" data-en="Vanilla">فانيليا</span>
@@ -498,158 +428,152 @@
           <span class="flavor-chip" data-ar="فراولة" data-en="Strawberry">فراولة</span>
           <span class="flavor-chip" data-ar="مزيج" data-en="Swirl">مزيج</span>
         </div>
-        <div class="price-row">
-          <div class="price">12د.ل<span>/ طلب</span></div>
-        </div>
       </div>
     </div>
 
-    <div class="card" style="animation-delay:0.15s">
+    <div class="card" style="animation-delay:.15s">
       <div class="slider" id="slider-m3">
         <div class="slider-track">
-          <div class="slide"><img src="img/ice-4.jpg"></div>
-          <div class="slide"><img src="img/ice-1.jpg"></div>
+          <div class="slide"><img src="img/ice-4.jpg" alt="وافل"></div>
+          <div class="slide"><img src="img/ice-1.jpg" alt="وافل"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-m3',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-m3',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="جديد" data-en="New">جديد</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+        <span class="badge badge-new" data-ar="جديد" data-en="New">جديد</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="وافل مع آيس كريم" data-en="Waffle with Ice Cream">وافل مع آيس كريم</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="وافل مع آيس كريم" data-en="Waffle with Ice Cream">وافل مع آيس كريم</div>
+          <div class="price-tag">10د.ل</div>
+        </div>
         <div class="card-desc" data-ar="وافل مقرمش ساخن مع آيس كريم ماكينة بارد" data-en="Crispy hot waffle topped with soft serve ice cream">وافل مقرمش ساخن مع آيس كريم ماكينة بارد</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="النكهات" data-en="Flavors">النكهات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="فانيليا" data-en="Vanilla">فانيليا</span>
           <span class="flavor-chip" data-ar="شوكولاتة" data-en="Chocolate">شوكولاتة</span>
           <span class="flavor-chip" data-ar="مزيج" data-en="Swirl">مزيج</span>
         </div>
-        <div class="price-row">
-          <div class="price">10د.ل<span>/ طلب</span>  </div>
-        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ══ SECTION 3: HOT SANDWICHES ══ -->
+<!-- ══ SANDWICHES ══ -->
 <section class="section" id="sandwiches">
-  <h2 class="section-title" data-ar="🥪 سندوتشات حارة" data-en="🥪 Hot Sandwiches">🥪 سندوتشات حارة</h2>
-  <p class="section-sub" data-ar="طازج وساخن في كل لقمة" data-en="Fresh and hot every bite">طازج وساخن في كل لقمة</p>
-
+  <div class="section-header">
+    <div class="section-eyebrow">HOT SANDWICHES</div>
+    <h2 class="section-title" data-ar="🥪 سندوتشات حارة" data-en="🥪 Hot Sandwiches">🥪 سندوتشات حارة</h2>
+    <div class="section-divider"></div>
+  </div>
   <div class="products-grid">
 
-    <div class="card" style="animation-delay:0.05s">
+    <div class="card" style="animation-delay:.05s">
       <div class="slider" id="slider-w1">
         <div class="slider-track">
-          <div class="slide" style="background:linear-gradient(135deg,#ffe5cc,#ffcba4)"><img src="img/san-1.jpg" alt="logo"></div>
-          <div class="slide" style="background:linear-gradient(135deg,#ffd5b8,#ffb88c)"><img src="img/san-2.jpg" alt="logo"></div>
+          <div class="slide"><img src="img/san-1.jpg" alt="دجاج مشوي"></div>
+          <div class="slide"><img src="img/san-2.jpg" alt="دجاج مشوي"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-w1',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-w1',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+        <span class="badge badge-hot" data-ar="الأكثر طلباً" data-en="Best Seller">الأكثر طلباً</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="سندوتش دجاج مشوي" data-en="Grilled Chicken Sandwich">سندوتش دجاج مشوي</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="سندوتش دجاج مشوي" data-en="Grilled Chicken Sandwich">سندوتش دجاج مشوي</div>
+          <div class="price-tag">8د.ل</div>
+        </div>
         <div class="card-desc" data-ar="دجاج مشوي طازج مع خس وطماطم وصوص خاص" data-en="Fresh grilled chicken with lettuce, tomato and special sauce">دجاج مشوي طازج مع خس وطماطم وصوص خاص</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="الإضافات" data-en="Add-ons">الإضافات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="جبن" data-en="Cheese">جبن</span>
           <span class="flavor-chip" data-ar="حار" data-en="Spicy">حار</span>
           <span class="flavor-chip" data-ar="بدون بصل" data-en="No Onion">بدون بصل</span>
         </div>
-        <div class="price-row">
-          <div class="price">8د.ل</div>
-        </div>
       </div>
     </div>
 
-    <div class="card" style="animation-delay:0.1s">
+    <div class="card" style="animation-delay:.1s">
       <div class="slider" id="slider-w2">
         <div class="slider-track">
-          <div class="slide" style="background:linear-gradient(135deg,#ffe0c0,#ffcba4)"><img src="img/san-3.jpg" alt="logo"></div>
-          <div class="slide" style="background:linear-gradient(135deg,#ffd5aa,#ffb88c)"><img src="img/san-1.jpg" alt="logo"></div>
-          <div class="slide" style="background:linear-gradient(135deg,#ffcca0,#ffa870)"><img src="img/san-2.jpg" alt="logo"></div>
+          <div class="slide"><img src="img/san-3.jpg" alt="سندوتش لحم"></div>
+          <div class="slide"><img src="img/san-1.jpg" alt="سندوتش لحم"></div>
+          <div class="slide"><img src="img/san-2.jpg" alt="سندوتش لحم"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-w2',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-w2',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-        </div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="سندوتش لحم" data-en="Beef Sandwich">سندوتش لحم</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="سندوتش لحم" data-en="Beef Sandwich">سندوتش لحم</div>
+          <div class="price-tag">12د.ل</div>
+        </div>
         <div class="card-desc" data-ar="لحم مفروم طازج مع صوص خاص ومخللات" data-en="Fresh ground beef with special sauce and pickles">لحم مفروم طازج مع صوص خاص ومخللات</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="الإضافات" data-en="Add-ons">الإضافات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="جبن" data-en="Cheese">جبن</span>
           <span class="flavor-chip" data-ar="حار جداً" data-en="Extra Spicy">حار جداً</span>
           <span class="flavor-chip" data-ar="مشروم" data-en="Mushroom">مشروم</span>
         </div>
-        <div class="price-row">
-          <div class="price">12د.ل</div>
-        </div>
       </div>
     </div>
 
-    <div class="card" style="animation-delay:0.15s">
+    <div class="card" style="animation-delay:.15s">
       <div class="slider" id="slider-w3">
         <div class="slider-track">
-          <div class="slide" style="background:linear-gradient(135deg,#fff0cc,#ffd880)"><img src="img/san-4.jpg"></div>
-          <div class="slide" style="background:linear-gradient(135deg,#ffe8b0,#ffcc60)"><img src="img/san-2.jpg"></div>
+          <div class="slide"><img src="img/san-4.jpg" alt="فلافل"></div>
+          <div class="slide"><img src="img/san-2.jpg" alt="فلافل"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-w3',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-w3',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="نباتي" data-en="Veggie">نباتي</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+        <span class="badge badge-veggie" data-ar="نباتي" data-en="Veggie">نباتي</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="سندوتش فلافل" data-en="Falafel Sandwich">سندوتش فلافل</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="سندوتش فلافل" data-en="Falafel Sandwich">سندوتش فلافل</div>
+          <div class="price-tag">10د.ل</div>
+        </div>
         <div class="card-desc" data-ar="فلافل مقرمش مع طحينة وخضروات طازجة" data-en="Crispy falafel with tahini and fresh vegetables">فلافل مقرمش مع طحينة وخضروات طازجة</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="الإضافات" data-en="Add-ons">الإضافات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="حار" data-en="Spicy">حار</span>
           <span class="flavor-chip" data-ar="بيض" data-en="Egg">بيض</span>
           <span class="flavor-chip" data-ar="جبن" data-en="Cheese">جبن</span>
         </div>
-        <div class="price-row">
-          <div class="price">10د.ل</div>
-        </div>
       </div>
     </div>
 
-    <div class="card" style="animation-delay:0.2s">
+    <div class="card" style="animation-delay:.2s">
       <div class="slider" id="slider-w4">
         <div class="slider-track">
-          <div class="slide" style="background:linear-gradient(135deg,#ffe5d0,#ffcba4)"><img src="img/san-1.jpg"></div>
-          <div class="slide" style="background:linear-gradient(135deg,#ffd5bc,#ffb890)"><img src="img/san-3.jpg"></div>
+          <div class="slide"><img src="img/san-1.jpg" alt="شاورما"></div>
+          <div class="slide"><img src="img/san-3.jpg" alt="شاورما"></div>
         </div>
         <button class="slider-btn prev" onclick="slide('slider-w4',-1)">‹</button>
         <button class="slider-btn next" onclick="slide('slider-w4',1)">›</button>
-        <div class="slider-dots">
-          <div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="badge" data-ar="جديد" data-en="New">جديد</div>
+        <div class="slider-dots"><div class="dot active"></div><div class="dot"></div></div>
+        <span class="badge badge-new" data-ar="جديد" data-en="New">جديد</span>
       </div>
       <div class="card-body">
-        <div class="card-name" data-ar="سندوتش شاورما" data-en="Shawarma Sandwich">سندوتش شاورما</div>
+        <div class="card-top">
+          <div class="card-name" data-ar="سندوتش شاورما" data-en="Shawarma Sandwich">سندوتش شاورما</div>
+          <div class="price-tag">16د.ل</div>
+        </div>
         <div class="card-desc" data-ar="شاورما دجاج أو لحم مع صوص الثوم والخضروات" data-en="Chicken or beef shawarma with garlic sauce and vegetables">شاورما دجاج أو لحم مع صوص الثوم والخضروات</div>
+        <div class="card-divider"></div>
         <div class="flavors-label" data-ar="الخيارات" data-en="Options">الخيارات</div>
         <div class="flavors">
           <span class="flavor-chip" data-ar="دجاج" data-en="Chicken">دجاج</span>
           <span class="flavor-chip" data-ar="لحم" data-en="Beef">لحم</span>
           <span class="flavor-chip" data-ar="مشكل" data-en="Mixed">مشكل</span>
-        </div>
-        <div class="price-row">
-          <div class="price">16د.ل</div>
         </div>
       </div>
     </div>
@@ -657,29 +581,24 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p data-ar="جميع الحقوق محفوظة © <strong>اسم المتجر</strong> ٢٠٢٥" data-en="All Rights Reserved © <strong>Store Name</strong> 2025">جميع الحقوق محفوظة © <strong>اسم المتجر</strong> ٢٠٢٥</p>
+  <p data-ar="جميع الحقوق محفوظة © <strong>قائمة الأصناف</strong> ٢٠٢٥" data-en="All Rights Reserved © <strong>Our Menu</strong> 2025">جميع الحقوق محفوظة © <strong>قائمة الأصناف</strong> ٢٠٢٥</p>
+  <div class="footer-line"></div>
 </footer>
 
 <script>
-  /* ── LANGUAGE TOGGLE ── */
   let isAr = true;
 
   function toggleLang() {
     isAr = !isAr;
-    const lang = isAr ? 'ar' : 'en';
-    const dir  = isAr ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
-    document.documentElement.dir  = dir;
+    document.documentElement.lang = isAr ? 'ar' : 'en';
+    document.documentElement.dir  = isAr ? 'rtl' : 'ltr';
     document.getElementById('langBtn').textContent = isAr ? 'EN' : 'عربي';
-
     document.querySelectorAll('[data-ar]').forEach(el => {
       el.innerHTML = isAr ? el.dataset.ar : el.dataset.en;
     });
   }
 
-  /* ── SECTION TABS ── */
   function showSection(id, btn) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -688,34 +607,29 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* ── IMAGE SLIDER ── */
   const sliderState = {};
 
   function slide(id, dir) {
-    const wrap   = document.getElementById(id);
-    const track  = wrap.querySelector('.slider-track');
-    const slides = track.children.length;
-    const dots   = wrap.querySelectorAll('.dot');
-
+    const wrap  = document.getElementById(id);
+    const track = wrap.querySelector('.slider-track');
+    const count = track.children.length;
+    const dots  = wrap.querySelectorAll('.dot');
     if (!sliderState[id]) sliderState[id] = 0;
-    sliderState[id] = (sliderState[id] + dir + slides) % slides;
-
-    track.style.transform = `translateX(${isAr ? '' : '-'}${sliderState[id] * 100}%)`;
+    sliderState[id] = (sliderState[id] + dir + count) % count;
+    const offset = sliderState[id] * 100;
+    track.style.transform = isAr ? `translateX(${offset}%)` : `translateX(-${offset}%)`;
     dots.forEach((d, i) => d.classList.toggle('active', i === sliderState[id]));
   }
 
-  /* dot click */
   document.querySelectorAll('.slider').forEach(wrap => {
     wrap.querySelectorAll('.dot').forEach((dot, i) => {
       dot.addEventListener('click', () => {
-        const id = wrap.id;
-        const diff = i - (sliderState[id] || 0);
-        if (diff !== 0) slide(id, diff);
+        const diff = i - (sliderState[wrap.id] || 0);
+        if (diff !== 0) slide(wrap.id, diff);
       });
     });
   });
 
-  /* flavor chip toggle */
   document.querySelectorAll('.flavor-chip').forEach(chip => {
     chip.addEventListener('click', () => chip.classList.toggle('selected'));
   });
