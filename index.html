@@ -106,8 +106,22 @@ body {
 }
 .item-with-tags:last-child { border-bottom:none; margin-bottom:0; }
 .item-with-tags .item-top {
-  display:flex; justify-content:space-between; align-items:baseline;
+  display:flex; justify-content:space-between; align-items:flex-start;
   gap:12px; margin-bottom:4px;
+}
+
+.item-with-tags .item-name {
+  flex:1;
+}
+
+/* Price column - vertical stacking */
+.item-prices {
+  display:flex; flex-direction:column; gap:2px;
+  flex-shrink:0; text-align:right;
+}
+
+.item-prices .item-price {
+  font-size:14px;
 }
 
 /* FLAVOR TAGS — horizontal, no animation */
@@ -332,8 +346,10 @@ body.en .ftag-en          { display:inline-block; }
       <div class="item-top">
         <div class="item-name ar-only">سندوتش دجاج</div>
         <div class="item-name en-only">Grilled Chicken Sandwich</div>
-        <div class="item-price">10 د.ل</div>
-        <div class="item-price">16 د.ل</div>
+        <div class="item-prices">
+          <div class="item-price">10 د.ل</div>
+          <div class="item-price">16 د.ل</div>
+        </div>
       </div>
       <div class="item-desc ar-only">دجاج · خس · طماطم</div>
       <div class="item-desc en-only">Fresh grilled chicken · lettuce · tomato · special sauce</div>
