@@ -80,6 +80,12 @@
     .section-title-ar, .section-title-en { font-size:20px; font-weight:700; color:#1e1208; }
     .section-rule { border:none; border-top:1px solid rgba(201,168,76,0.4); margin:14px 0 20px; }
 
+    /* SUB SECTION (الإضافات) */
+    .sub-section-header { text-align:center; margin:24px 0 0; }
+    .sub-section-title-ar,
+    .sub-section-title-en { font-size:15px; font-weight:700; color:#7a5530; letter-spacing:1px; }
+    .sub-section-rule { border:none; border-top:1px dashed rgba(201,168,76,0.35); margin:10px 0 16px; }
+
     /* ITEM */
     .item {
       display:flex; justify-content:space-between; align-items:baseline;
@@ -93,14 +99,11 @@
     .item-prices { display:flex; flex-direction:column; gap:2px; flex-shrink:0; text-align:right; }
     .item-price { font-size:14px; color:#5c3d1e; font-weight:600; white-space:nowrap; }
 
-    /* ITEM with tags (sandwiches) */
-    .item-with-tags { margin-bottom:18px; padding-bottom:16px; border-bottom:1px dashed rgba(201,168,76,0.18); }
+    /* ITEM with tags */
+    .item-with-tags { margin-bottom:14px; padding-bottom:12px; border-bottom:1px dashed rgba(201,168,76,0.18); }
     .item-with-tags:last-child { border-bottom:none; margin-bottom:0; }
-    .item-with-tags .item-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:4px; }
-    .item-with-tags .item-name { flex:1; }
-
-    /* SIZE LABELS */
-    .size-label { font-size:10px; color:#b09070; margin-bottom:1px; }
+    .item-with-tags .item-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+    .item-with-tags .item-name { flex:1; font-size:14px; font-weight:700; color:#1e1208; }
 
     /* FLAVOR TAGS */
     .flavor-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
@@ -117,26 +120,30 @@
     .section-flavors .flavor-tags { justify-content:center; }
 
     /* FOOTER */
-    .footer { text-align:center;}
+    .footer { text-align:center; margin-top:36px; }
     .footer-text { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:#c9a84c; }
     .footer-sub { font-size:12px; color:#a08060; margin-top:6px; }
 
     @media (max-width:480px) { body { padding:30px 12px 50px; } }
 
     /* LANG STATES */
-    .en-only          { display:none; }
-    .ar-only          { display:block; }
-    .section-title-en { display:none; }
-    .section-title-ar { display:block; }
-    .ftag-ar          { display:inline-block; }
-    .ftag-en          { display:none; }
+    .en-only               { display:none; }
+    .ar-only               { display:block; }
+    .section-title-en      { display:none; }
+    .section-title-ar      { display:block; }
+    .sub-section-title-en  { display:none; }
+    .sub-section-title-ar  { display:block; }
+    .ftag-ar               { display:inline-block; }
+    .ftag-en               { display:none; }
 
-    body.en .en-only          { display:block; }
-    body.en .ar-only          { display:none; }
-    body.en .section-title-en { display:block; }
-    body.en .section-title-ar { display:none; }
-    body.en .ftag-ar          { display:none; }
-    body.en .ftag-en          { display:inline-block; }
+    body.en .en-only              { display:block; }
+    body.en .ar-only              { display:none; }
+    body.en .section-title-en     { display:block; }
+    body.en .section-title-ar     { display:none; }
+    body.en .sub-section-title-en { display:block; }
+    body.en .sub-section-title-ar { display:none; }
+    body.en .ftag-ar              { display:none; }
+    body.en .ftag-en              { display:inline-block; }
   </style>
 </head>
 <body>
@@ -180,9 +187,7 @@
         <div class="item-desc ar-only">نكهه رائعة في كوب واحد</div>
         <div class="item-desc en-only">One amazing flavor in a cup</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">8 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">8 د.ل</div></div>
     </div>
 
     <div class="item">
@@ -192,9 +197,7 @@
         <div class="item-desc ar-only">نكهتان مميزتان في كوب واحد</div>
         <div class="item-desc en-only">Two amazing flavors in one cup</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">10 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">10 د.ل</div></div>
     </div>
 
     <div class="item">
@@ -204,9 +207,7 @@
         <div class="item-desc ar-only">ثلاث نكهات شهية في كوب كبير</div>
         <div class="item-desc en-only">Three amazing flavors in a large cup</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">21 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">21 د.ل</div></div>
     </div>
 
     <div class="item">
@@ -216,12 +217,9 @@
         <div class="item-desc ar-only">طربوش مقرمش مع كرات الآيس كريم الباردة</div>
         <div class="item-desc en-only">Crispy cone with cold ice cream scoops</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">25 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">25 د.ل</div></div>
     </div>
 
-    <!-- النكهات مرة واحدة في المنتصف قبل الفاصل -->
     <div class="section-flavors">
       <span class="section-flavors-label ar-only">النكهات المتاحة</span>
       <span class="section-flavors-label en-only">Available Flavors</span>
@@ -283,9 +281,7 @@
         <div class="item-desc ar-only">آيس كريم ماكينة ناعم</div>
         <div class="item-desc en-only">Smooth soft serve ice cream</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">5 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">5 د.ل</div></div>
     </div>
 
     <div class="item">
@@ -295,9 +291,7 @@
         <div class="item-desc ar-only">آيس كريم كبير</div>
         <div class="item-desc en-only">Large soft serve ice cream</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">6 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">6 د.ل</div></div>
     </div>
 
     <div class="item">
@@ -307,12 +301,9 @@
         <div class="item-desc ar-only">طربوش مقرمش مع آيس كريم بارد</div>
         <div class="item-desc en-only">Crispy cone with soft serve ice cream</div>
       </div>
-      <div class="item-prices">
-        <div class="item-price">7 د.ل</div>
-      </div>
+      <div class="item-prices"><div class="item-price">7 د.ل</div></div>
     </div>
 
-    <!-- النكهات مرة واحدة في المنتصف قبل الفاصل -->
     <div class="section-flavors">
       <span class="section-flavors-label ar-only">النكهات المتاحة</span>
       <span class="section-flavors-label en-only">Available Flavors</span>
@@ -375,6 +366,29 @@
           <div class="item-price">12 د.ل</div>
           <div class="item-price">18 د.ل</div>
         </div>
+      </div>
+    </div>
+
+    <!-- ══ الإضافات ══ -->
+    <div class="sub-section-header">
+      <div class="sub-section-title-ar">الإضافات ✦</div>
+      <div class="sub-section-title-en">Add-ons ✦</div>
+    </div>
+    <hr class="sub-section-rule">
+
+    <div class="item-with-tags">
+      <div class="item-top">
+        <div class="item-name ar-only">جبن</div>
+        <div class="item-name en-only">Cheese</div>
+        <div class="item-prices"><div class="item-price">1 د.ل</div></div>
+      </div>
+    </div>
+
+    <div class="item-with-tags">
+      <div class="item-top">
+        <div class="item-name ar-only">صوص</div>
+        <div class="item-name en-only">Sauce</div>
+        <div class="item-prices"><div class="item-price">2 د.ل</div></div>
       </div>
     </div>
 
